@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dscctgwxtlk35"]
+
+[ext_resource type="PackedScene" uid="uid://qlqhg875yf8k" path="res://assets/test_lvl/model.gltf" id="1_e083p"]
+[ext_resource type="PackedScene" uid="uid://cx0i2iwowm0t3" path="res://components/player/player.tscn" id="2_655mc"]
+[ext_resource type="Script" path="res://components/smoother/smoother.gd" id="3_lvdja"]
+
+[sub_resource type="Environment" id="Environment_ctwov"]
+background_mode = 1
+background_color = Color(0.607843, 0.772549, 0.827451, 1)
+reflected_light_source = 1
+sdfgi_use_occlusion = true
+glow_normalized = true
+glow_intensity = 1.0
+glow_bloom = 0.06
+glow_blend_mode = 1
+fog_enabled = true
+fog_light_color = Color(0, 0.552941, 0.607843, 1)
+fog_density = 0.0144
+fog_sky_affect = 0.0
+
+[node name="level" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_e083p")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ctwov")
+
+[node name="player" parent="." instance=ExtResource("2_655mc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.33117, 0)
+
+[node name="Smoother" type="Node" parent="."]
+script = ExtResource("3_lvdja")
+properties = Array[String](["position", "rotation.x"])
+includes = Array[NodePath]([NodePath("../player")])
+excludes = Array[NodePath]([NodePath("../blockbench_export"), NodePath("../WorldEnvironment")])

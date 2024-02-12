@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx0i2iwowm0t3"]
+
+[ext_resource type="Script" path="res://components/player/player.gd" id="1_xdfhq"]
+[ext_resource type="PackedScene" uid="uid://js3li3kwc0mh" path="res://components/ui/debug/debug.tscn" id="2_3iaxk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jr4jy"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3ya2i"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1t5uv"]
+
+[node name="player" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_xdfhq")
+accel = 130.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_jr4jy")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.604504, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_3ya2i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_1t5uv")
+
+[node name="debug" parent="." instance=ExtResource("2_3iaxk")]

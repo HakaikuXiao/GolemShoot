@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://dudliq345k106"]
+
+[ext_resource type="Script" path="res://components/ui/main_menu/main_menu.gd" id="1_inws6"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_inws6")
+
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+
+[node name="buttons" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="play" type="Button" parent="buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "PLAY"
+
+[node name="settings" type="Button" parent="buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "SETTINGS"
+
+[node name="quit" type="Button" parent="buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "QUIT"
+
+[connection signal="pressed" from="buttons/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="buttons/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="buttons/quit" to="." method="_on_quit_pressed"]

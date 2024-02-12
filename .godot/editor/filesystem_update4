@@ -1,0 +1,12 @@
+res://components/ui/main_menu/main_menu.tscn
+res://assets/theme/default.theme
+res://components/system/main.tscn
+res://components/player/player.tscn
+res://components/levels/test/level.tscn
+res://components/ui/debug/debug.tscn
+res://components/ui/lobby/lobby.tscn
+res://components/system/system.gd
+res://components/ui/main_menu/main_menu.gd
+res://components/system/network.gd
+res://components/system/main.gd
+res://components/game/game.gd
