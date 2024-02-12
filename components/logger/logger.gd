@@ -7,7 +7,7 @@ static func log(text: String):
 
 static func err(text: String):
 	push_error("[" + str(Time.get_time_string_from_system()) + "] " + text)
-
+	OS.alert(text, "ERROR")
 
 static func warn(text: String):
 	push_warning("[" + str(Time.get_time_string_from_system()) + "] " + text)

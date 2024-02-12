@@ -27,21 +27,22 @@ func join_game(address = ""):
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_client(address, port)
 	if error:
-		return error
+		debug.err("Cannot create client!")
+
 	multiplayer.multiplayer_peer = peer
-	debug.log(peer + " Joined")
+	debug.log(str(peer) + " Joined to " + str(address) + ":" + str(port))
 
 
 func create_game():
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(port)
 	if error:
-		return error
+		debug.err("Cannot create server!")
 	multiplayer.multiplayer_peer = peer
 
 	players[1] = player_info
 	player_connected.emit(1, player_info)
-	debug.log(peer + " Created server")
+	debug.log(str(peer) + " Created server on " + str(port))
 
 
 func remove_multiplayer_peer():
@@ -51,7 +52,7 @@ func remove_multiplayer_peer():
 
 func _on_player_connected(id):
 	_register_player.rpc_id(id, player_info)
-	debug.log("Player " + id + " connected.")
+	debug.log("Player " + str(id) + " connected.")
 
 
 @rpc("any_peer", "reliable")
@@ -59,13 +60,13 @@ func _register_player(new_player_info):
 	var new_player_id = multiplayer.get_remote_sender_id()
 	players[new_player_id] = new_player_info
 	player_connected.emit(new_player_id, new_player_info)
-	debug.log("Player " + new_player_info + " registered")
+	debug.log("Player " + str(new_player_info) + " registered")
 
 
 func _on_player_disconnected(id):
 	players.erase(id)
 	player_disconnected.emit(id)
-	debug.log("Player " + id + " disconnected.")
+	debug.log("Player " + str(id) + " disconnected.")
 
 
 func _on_connected_ok():
@@ -85,6 +86,7 @@ func _on_server_disconnected():
 	players.clear()
 	server_disconnected.emit()
 	debug.log("Server disconnected")
+	
 
 
 @rpc("call_local", "reliable")

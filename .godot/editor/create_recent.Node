@@ -1,7 +1,11 @@
-ColorRect
-Button
+AcceptDialog
 VBoxContainer
+ScrollContainer
+LineEdit
+Button
+HBoxContainer
 Label
+ColorRect
 MeshInstance3D
 Smoother
 Marker3D
@@ -9,6 +13,3 @@ MultiplayerSpawner
 MultiplayerSynchronizer
 Camera3D
 CharacterBody3D
-WorldEnvironment
-ImporterMeshInstance3D
-CollisionShape3D

@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kblbo")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="bg" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(700, 400)
 layout_mode = 1
 anchors_preset = 8
@@ -27,3 +27,69 @@ offset_bottom = 175.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+
+[node name="servers_label" type="Label" parent="."]
+custom_minimum_size = Vector2(80, 30)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 85.72
+offset_right = 40.0
+offset_bottom = 115.72
+grow_horizontal = 2
+text = "SERVERS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buttons" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(400, 30)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -162.61
+offset_right = 150.0
+offset_bottom = -132.61
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="create" type="Button" parent="buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CREATE_SERVER"
+
+[node name="connect" type="Button" parent="buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CONNECT"
+
+[node name="ip" type="LineEdit" parent="buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "localhost"
+placeholder_text = "IP"
+
+[node name="servers" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(550, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="box" type="VBoxContainer" parent="servers"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="pressed" from="buttons/create" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="buttons/connect" to="." method="_on_connect_pressed"]
